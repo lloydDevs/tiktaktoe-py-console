@@ -1,4 +1,5 @@
 players = [0, 1]
+
 valid_combinations = [
     ["a1","b1", "c1"],
     ["a2","b2", "c2"],
@@ -37,22 +38,25 @@ def is_draw():
     return all(value != " " for value in board.values())
 
 def play_game():
+    play = True
     current_player = 0
     symbols = ["X", "O"]
 
     print("Welcome to Console TikTakToe!")
     print_board()
 
-    while True:
+    while play:
         symbol = symbols[current_player]
-        move = input(f"Player {current_player + 1} ({symbol}), enter your move (e.g. a1, b2): ").lower()
-        
+        move = input(f"Player {current_player + 1} ({symbol}), enter your move (e.g. a1, b2) or type \"exit\" to quit: ").lower()
+        if move == "exit":
+            play = False
+            return
         if move not in board:
-            print("Invalid move! Try again.")
+            print("Invalid move! Try again.\n")
             continue
 
         if board[move] != " ":
-            print("That cell is already taken! Choose another.")
+            print("That cell is already taken! Choose another.\n")
             continue
 
         board[move] = symbol
@@ -66,7 +70,6 @@ def play_game():
             print("It's a draw!")
             break
 
-        current_player = 1 - current_player  # switch player
-
+        current_player = 1 - current_player  #switch player
 # Start the game
 play_game()
