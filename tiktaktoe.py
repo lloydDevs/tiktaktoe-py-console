@@ -71,5 +71,5 @@ def play_game():
             break
 
         current_player = 1 - current_player  #switch player
-# Start the game
+# This will trigger the game
 play_game()
